@@ -11,6 +11,9 @@ python = "^3.10"
 fastapi = "^0.110.0"
 sqlalchemy = "^2.0.29"
 psycopg2-binary = "^2.9.9"
+pydantic = "^2.7.2"
+python-dotenv = "^1.0.1"
+dependency-injector = "^4.41.0"
 
 
 [tool.poetry.group.dev.dependencies]

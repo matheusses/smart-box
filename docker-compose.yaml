@@ -2,7 +2,7 @@ version: '3.8'
 services:
   web:
     build: .
-    command: uvicorn src.smart_box.infrastructure.adapters.api.main:app --host 0.0.0.0 --reload
+    command: uvicorn src.app.entrypoint.api.main:app --host 0.0.0.0 --reload
     volumes:
       - .:/app
     ports:
@@ -12,11 +12,11 @@ services:
   db:
       image: postgres:latest
       environment:
-        POSTGRES_DB: dbname
-        POSTGRES_USER: user
-        POSTGRES_PASSWORD: password
+        POSTGRES_DB: ${POSTGRES_DB}
+        POSTGRES_USER: ${POSTGRES_USER}
+        POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
       ports:
-        - "5432:5432"
+        - "${POSTGRES_PODOCKERT}:${POSTGRES_PORT}"
       volumes:
         - postgres_data:/var/lib/postgresql/data
 volumes:

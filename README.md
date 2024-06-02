@@ -65,3 +65,6 @@ hexagonal_project/
 ├── README.md                              # Project overview and setup instructions
 ├── requirements.txt                       # Python dependencies
 └── .gitignore                             # Specifies intentionally untracked files to ignore
+
+
+next step -> run code
