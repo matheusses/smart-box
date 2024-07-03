@@ -29,4 +29,4 @@ RUN poetry config virtualenvs.create false \
 COPY . /app
 
 # Command to run the application using Uvicorn
-CMD ["uvicorn", "src.smart_box.infrastructure.adapters.api.main:app", "--host", "0.0.0.0", "--port", "80"]
+CMD ["uvicorn", "src.app.entrypoint.api.main:app", "--host", "0.0.0.0", "--port", "80"]

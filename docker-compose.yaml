@@ -9,15 +9,20 @@ services:
       - "8000:8000"
     environment:
       - PYTHONPATH=/app
+    depends_on:
+      - db
+    env_file:
+      - .env  # Path to your .env file relative to the compose file
   db:
       image: postgres:latest
       environment:
-        POSTGRES_DB: ${POSTGRES_DB}
-        POSTGRES_USER: ${POSTGRES_USER}
-        POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+        DB_NAME: ${DB_NAME}
+        DB_USER: ${DB_USER}
+        DB_PASSWORD: ${DB_PASSWORD}
       ports:
-        - "${POSTGRES_PODOCKERT}:${POSTGRES_PORT}"
+        - "${DB_PORT}:${DB_PORT}"
       volumes:
         - postgres_data:/var/lib/postgresql/data
+        - ./init-db.sh:/docker-entrypoint-initdb.d/init-db.sh
 volumes:
   postgres_data:

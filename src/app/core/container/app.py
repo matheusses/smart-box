@@ -26,7 +26,7 @@ class Container(containers.DeclarativeContainer):
 
     """
 
-
+    breakpoint()
     config = providers.Configuration()
     settings = Settings()
     config.from_dict(settings.model_dump())

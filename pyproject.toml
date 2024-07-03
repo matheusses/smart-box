@@ -4,7 +4,7 @@ version = "0.1.0"
 description = ""
 authors = ["matheusses <matheus.s.es@gmail.com>"]
 readme = "README.md"
-packages = [{include = "smart_box", from = "src"}]
+packages = [{include = "app", from = "src"}]
 
 [tool.poetry.dependencies]
 python = "^3.10"
@@ -14,6 +14,8 @@ psycopg2-binary = "^2.9.9"
 pydantic = "^2.7.2"
 python-dotenv = "^1.0.1"
 dependency-injector = "^4.41.0"
+alembic = "^1.13.1"
+pydantic-settings = "^2.3.1"
 
 
 [tool.poetry.group.dev.dependencies]
