@@ -21,6 +21,7 @@ RUN pip install --upgrade pip \
 # Copy the project files to the container
 COPY ./pyproject.toml poetry.lock* /app/
 
+
 # Install project dependencies
 RUN poetry config virtualenvs.create false \
   && poetry install --no-interaction --no-ansi

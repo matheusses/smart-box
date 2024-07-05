@@ -22,17 +22,13 @@ class Settings(BaseSettings):
     # Application configuration
     app_env: str  # dev, test, ci, prod
     
-    # Find and load the .env file
-    #load_dotenv(find_dotenv(filename=".env", usecwd=True))
-    DOTENV = os.path.join(os.path.dirname(__file__), ".env")
-    breakpoint()
+    # docker compose exec -it web  poetry run alembic upgrade head
     model_config = SettingsConfigDict(
-        env_file=find_dotenv(filename=DOTENV), env_file_encoding="utf-8", extra="ignore"
+        env_file=find_dotenv(filename="/app/.env"), env_file_encoding="utf-8", extra="ignore"
     )
-    breakpoint()
+
     @property
     def db_postgres(self) -> URL:
-        breakpoint()
         print(self.db_user)
         return URL.create(
             drivername="postgresql+asyncpg",
@@ -54,7 +50,7 @@ class Settings(BaseSettings):
     def db_data_source_name(self) -> str:
         return f"postgresql://{self.db_user}:{self._db_password_escaped_for_alembic}@{self.db_host}/{self.db_name}"
     
-#@lru_cache
+@lru_cache
 def get_settings() -> Settings:
     return Settings()
     
