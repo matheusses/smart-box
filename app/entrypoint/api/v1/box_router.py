@@ -38,7 +38,7 @@ async def create_box(
     ],
     box_service: BoxService = Depends(Provide[Container.box_service]),
 ) -> BoxCreateResponse:
-        quote = await box_service.create_box(
+        box = await box_service.create_box(
             name=request.name
         )
-        return BoxCreateResponse(quote_uuid=quote.uuid, expected_total=quote.expected_total)
+        return BoxCreateResponse(name=box.name)
