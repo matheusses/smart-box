@@ -1,6 +1,6 @@
 from logging.config import fileConfig
 
-from src.app.core.settings import get_settings
+from app.core.settings import get_settings
 from sqlalchemy import engine_from_config
 from sqlalchemy import pool
 
