@@ -2,7 +2,7 @@ version: '3.8'
 services:
   web:
     build: .
-    command: uvicorn app.entrypoint.api.main:app --host 0.0.0.0 --reload
+    command: sh entrypoint.sh
     volumes:
       - .:/app
     ports:

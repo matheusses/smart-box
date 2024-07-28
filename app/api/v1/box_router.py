@@ -1,14 +1,13 @@
 from typing import Annotated
 from app.core.container.app import Container
-from app.entrypoint.api.dto.box import BoxCreateRequest, BoxCreateResponse
-from app.entrypoint.api.openapi.examples import BoxCreateRequestExample
-from app.service.create_box import BoxService
+from app.api.dto.box import BoxCreateRequest, BoxCreateResponse
+from app.service.box import BoxService
 from dependency_injector.wiring import Provide, inject
 from fastapi import APIRouter, Body, Depends
 from starlette import status
 
 
-router = APIRouter()
+router = APIRouter(prefix='')
 
 
 @router.post(

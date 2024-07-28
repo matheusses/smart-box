@@ -1,4 +1,4 @@
-from app.entrypoint.api.openapi.examples import BoxCreateRequestExample, BoxCreateResponseExample
+from app.api.v1.openapi.examples import BoxCreateRequestExample, BoxCreateResponseExample
 from pydantic import BaseModel, ConfigDict
 
 class BoxCreateRequest(BaseModel):

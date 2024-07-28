@@ -1,4 +1,4 @@
-from app.entrypoint.api.v1.box_router import router as box_router
+from app.api.v1.box_router import router as box_router
 from fastapi import APIRouter
 
 router = APIRouter(prefix="/v1")

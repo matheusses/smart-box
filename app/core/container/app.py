@@ -1,8 +1,9 @@
 from uuid import uuid4
 
+from app.core.http_client.httpx_async import init_async_client
 from app.core.settings import Settings
-from app.infrastructure.db.repositories.box_repository import BoxPostgresRepository
-from app.service.create_box import BoxService
+from app.infrastructure.db.repositories.box_repository import BoxRepository
+from app.service.box import BoxService
 from dependency_injector import containers, providers
 from sqlalchemy.ext.asyncio import create_async_engine
 
@@ -29,7 +30,7 @@ class Container(containers.DeclarativeContainer):
     """
     wiring_config = containers.WiringConfiguration(
         packages=[
-            "app.entrypoint.api.v1",
+            "app.api.v1",
         ]
     )
 
@@ -45,8 +46,10 @@ class Container(containers.DeclarativeContainer):
         max_overflow=config.get("db_overflow_size"),
     )
 
+    async_http_client = providers.Resource(init_async_client)
+
     box_repository = providers.Factory(
-        BoxPostgresRepository,
+        BoxRepository,
         db=db
     )
 

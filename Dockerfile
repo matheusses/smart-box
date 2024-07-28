@@ -10,8 +10,7 @@ ENV PYTHONDONTWRITEBYTECODE 1
 ENV PYTHONUNBUFFERED 1
 
 # Set work directory
-WORKDIR /app
-
+WORKDIR /home/appuser
 # Install system dependencies
 RUN apt-get update \
   && apt-get install -y --no-install-recommends gcc libpq-dev \
@@ -30,7 +29,7 @@ RUN pip install --upgrade pip \
   && pip install poetry
 
 # Copy the project files to the container
-COPY ./pyproject.toml poetry.lock* /app/
+COPY ./pyproject.toml poetry.lock* ./
 
 
 # Copy the rest of the application
@@ -41,7 +40,11 @@ COPY entrypoint.sh ./
 RUN poetry config virtualenvs.create false &&\
   poetry install --no-interaction --no-ansi && \
   chmod +x entrypoint.sh && \
-  chown -R appuser:appuser /app 
+  chown -R appuser:appuser /home/appuser && \
+  rm -rf /root/.cache
+
+# Expose the port on which your FastAPI application will run (default is 8000)
+EXPOSE 8000
 
 # Switch to the 'appuser' user
 USER appuser
